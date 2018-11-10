@@ -1,0 +1,18 @@
+{
+  "name": "dtbot",
+  "version": "1.0.0",
+  "description": "bot that transfers messages from discord to telegram",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "stop": "pkill -f node",
+    "test": "echo 42"
+  },
+  "author": "corusm",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "telegraf": "^3.25.0"
+  },
+  "devDependencies": {}
+}
