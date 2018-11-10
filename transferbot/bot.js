@@ -21,6 +21,7 @@ const client = new Discord.Client();
 //Sourcecode
 
 //Discord.js Listeners
+//Syntax: !send nickname yourText || nickname must be listed on users.json
 client.on('message', msg => {
     var str = msg.content
     const subText = str.split(" ") //Splits up the messages into the word devided by spaces
@@ -31,6 +32,7 @@ client.on('message', msg => {
 });
 
 //User verifies himself and his ID will be added to users.json
+//Syntax: /init nickname
 bot.command('/init', (ctx) => {
     let input = ctx.message["text"]
     const subText = input.split(" ")
