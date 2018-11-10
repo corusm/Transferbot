@@ -2,9 +2,9 @@
 
 This bot that can send Messages from Telegram to Discord (and back)
 
-# Install / Self Hosting
 
-## Install Nodejs and npm
+
+## Install / Self Hosting
 
 First install the nodejs and npm packages
 ```
