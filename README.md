@@ -2,7 +2,7 @@
 
 This bot that can send Messages from Telegram to Discord (and back)
 
-I won't provide the bot on my own Server. So here is the **Setup Guide**:
+# Install / Self Hosting
 
 ## Install Nodejs and npm
 
