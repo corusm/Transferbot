@@ -16,6 +16,10 @@ bot.start((ctx) => ctx.reply('Welcome')) //Bot first Join
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+console.log("-------------------------")
+console.log("------ BOT RUNNING ------")
+console.log("-------------------------")
+
 // Winston
 let winston = require('winston')
 let logger = winston.createLogger({
@@ -45,7 +49,7 @@ client.on('message', msg => {
     userNameID = readUsers(subText[1]) // Read Users from Users.json (readUsers() Method)
     if (str.includes("!send")) { // Send Messages from Discord to Telegram
         const finalMessage = str.split(">")
-        bot.telegram.sendMessage(userNameID, finalMessage[1]) //Send Message to TelegramUser
+        bot.telegram.sendMessage(userNameID, from + ": " + finalMessage[1]) //Send Message to TelegramUser
         logger.log("info", "[DISCORD>>TELEGRAM] Message from " + from + " to " + subText[1])
     }
 });
@@ -66,7 +70,7 @@ bot.command('/send', (ctx) => {
     const subText = input.split(" ")
     const channel = client.channels.find('name', subText[1])
     const finalMessage = input.split(">")
-    channel.send(finalMessage[1])
+    channel.send(ctx.from["username"] + ": " + finalMessage[1])
     logger.log("info", "[TELEGRAM>>DISCORD] Meesage from " + ctx.from["username"] + " to " + subText[1])
 })
 
