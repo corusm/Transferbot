@@ -9,7 +9,7 @@ var fs = require("fs");
 //------------------------
 // Init Telegram Bot
 const Telegraf = require('telegraf')
-const bot = new Telegraf("642526643:AAG_ywVhNVR2G-9vA8Gye9vac5hiYQs0jqI")
+const bot = new Telegraf("addYourTokenHere")
 bot.start((ctx) => ctx.reply('Welcome')) //Bot first Join
 
 // Init Discord Bot
@@ -99,4 +99,4 @@ function readUsers(usernameOnList) { // searches for Users on users.json
 //----------------
 //RUNNING THE BOT
 bot.startPolling() //executes telegram bot
-client.login('NTA5NjUyOTQ0NzQ5MzMwNDQ1.DsXBzg.K94bXavM8t4_WwlX2MCw9nTq_mc'); //login into discord bot (Token)
+client.login('addYourTokenHere'); //login into discord bot (Token)
