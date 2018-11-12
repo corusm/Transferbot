@@ -29,18 +29,10 @@ Add your discord and telegram bot token to the **tokens.json** file
 ## Run the bot
 Navigate to the directory where you have installed the bot (where the **node_modules** folder is located) and run these commands:
 
-Start Bot:
-```
-npm start
-```
-Stop Bot:
-```
-npm stop
-```
-Test Bot:
-```
-npm test
-```
+1. Start Bot: `npm start`
+2. Stop Bot: `npm stop`
+3. Test Bot: `npm test`
+
 ## Log
 All the logs that you see in the shell also get logged in the **info.log** file.
 
