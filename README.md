@@ -18,7 +18,7 @@ git clone https://github.com/corusm/Transferbot.git
 
 
 ## Run the bot
-Go to the directory where you have installed the bot and run these commands:
+Navigate to the directory where you have installed the bot and run these commands:
 
 Start Bot:
 ```
