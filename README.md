@@ -2,7 +2,7 @@
 
 This bot that can send Messages from Telegram to Discord (and back)
 
-
+# Documentation
 
 ## Install / Self Hosting
 
@@ -16,31 +16,39 @@ then clone the git repos to your Server
 git clone https://github.com/corusm/Transferbot.git
 ```
 
-## Run the bot
 
-Start:
+## Run the bot
+Go to the directory where you have installed the bot and run these commands:
+
+Start Bot:
 ```
 npm start
 ```
-Stop:
+Stop Bot:
 ```
 npm stop
 ```
-Test:
+Test Bot:
 ```
 npm test
 ```
 
-## Documentation
+## Commands
 
 ### Telegram Commands:
 Add your username to the System (so it gets your ID):
-* **/auth nickname**
+* **/auth "nickname"**
+
+List Telegram users connected to the System:
+* **/listusers**
 
 Send Message from Telegram to Discord:
-* **/send channelName > message**
+* **/send "channelName" > "message"**
 
 ## Discord Commands:
 Send Messages from Discord to Telegram:
 with the nickname you just chose
-* **!send nickname > message**
+* **!send "nickname" > "message"**
+
+List Telegram users connected to the System:
+* **!listusers**
