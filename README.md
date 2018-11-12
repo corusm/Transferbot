@@ -17,6 +17,15 @@ git clone https://github.com/corusm/Transferbot.git
 ```
 
 
+## Add Tokens
+Add your discord and telegram bot token to the *tokens.json* file
+```
+{
+  "discord": "placeYourToken",
+  "telegram": "placeYourToken"
+}
+```
+
 ## Run the bot
 Navigate to the directory where you have installed the bot and run these commands:
 
@@ -32,10 +41,12 @@ Test Bot:
 ```
 npm test
 ```
+## Log
+All the logs that you see in the shell also get logged in the *info.log* File.
 
-## Commands
+# Commands
 
-### Telegram Commands:
+## Telegram Commands:
 Add your username to the System (so it gets your ID):
 * **/auth "nickname"**
 
