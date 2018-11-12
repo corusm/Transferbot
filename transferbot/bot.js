@@ -9,35 +9,37 @@ var fs = require("fs");
 //------------------------
 // Init Telegram Bot
 const Telegraf = require('telegraf')
-const bot = new Telegraf("addYourTokenHere")
+const bot = new Telegraf(readTokens('telegram'))
+bot.startPolling() //executes telegram bot
 bot.start((ctx) => ctx.reply('Welcome')) //Bot first Join
 
 // Init Discord Bot
 const Discord = require('discord.js');
 const client = new Discord.Client();
+client.login(readTokens("discord")); //login into discord bot (Token)
 
-console.log("-------------------------")
-console.log("------ BOT RUNNING ------")
-console.log("-------------------------")
 
 // Winston
 let winston = require('winston')
 let logger = winston.createLogger({
-    level: 'info',
+    level: "info",
     format: winston.format.combine(
         winston.format.timestamp(),
         winston.format.printf(info => {
             return `${info.timestamp} ${info.level}: ${info.message}`;
-        })
+        }),
     ),
     transports: [
       new winston.transports.Console(),
       new winston.transports.File({filename: 'info.log'})
     ]
 });
+//-------------------------------------
+// Bot started
+console.log("-------------------------")
+logger.log("info", "BOT RUNNING")
+console.log("-------------------------")
 
-//-------------------------------------
-//-------------------------------------
 // Sourcecode
 
 // Discord.js Listeners
@@ -51,6 +53,10 @@ client.on('message', msg => {
         const finalMessage = str.split(">")
         bot.telegram.sendMessage(userNameID, from + ": " + finalMessage[1]) //Send Message to TelegramUser
         logger.log("info", "[DISCORD>>TELEGRAM] Message from " + from + " to " + subText[1])
+    }
+    if (str.includes("!listusers")) { // Send Messages from Discord to Telegram
+        listUsers(msg);
+        logger.log("info", "Discord users listed (users.json)")
     }
 });
 
@@ -72,6 +78,11 @@ bot.command('/send', (ctx) => {
     const finalMessage = input.split(">")
     channel.send(ctx.from["username"] + ": " + finalMessage[1])
     logger.log("info", "[TELEGRAM>>DISCORD] Meesage from " + ctx.from["username"] + " to " + subText[1])
+})
+
+bot.command('/listusers', (ctx) => {
+    listUsers(ctx)
+    logger.log("info", "Telegram users listed (users.json)")
 })
 
 bot.catch((err) => { // Catches Error
@@ -96,7 +107,17 @@ function readUsers(usernameOnList) { // searches for Users on users.json
     return jsonContent[usernameOnList]
 }
 
-//----------------
-//RUNNING THE BOT
-bot.startPolling() //executes telegram bot
-client.login('addYourTokenHere'); //login into discord bot (Token)
+function listUsers(ctx, service) {
+  var contents = fs.readFileSync("./users.json");
+  var jsonContent = JSON.parse(contents);
+  var users = Object.entries(jsonContent);
+  for (var i = 0; i < users.length; i++) {
+    ctx.reply(users[i])
+  }
+}
+
+function readTokens(token) { // searches for token on tokens.json
+    var contents = fs.readFileSync("./tokens.json");
+    var jsonContent = JSON.parse(contents); // Parse to String
+    return jsonContent[token]
+}
