@@ -18,7 +18,7 @@ git clone https://github.com/corusm/Transferbot.git
 
 
 ## Add Tokens
-Add your discord and telegram bot token to the *tokens.json* file
+Add your discord and telegram bot token to the **tokens.json** file
 ```
 {
   "discord": "placeYourToken",
