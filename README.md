@@ -42,7 +42,7 @@ Test Bot:
 npm test
 ```
 ## Log
-All the logs that you see in the shell also get logged in the **info.log** File.
+All the logs that you see in the shell also get logged in the **info.log** file.
 
 # Commands
 
