@@ -2,4 +2,7 @@
 node_modules/
 
 #tokens file
-tokens.json
+/tokens.json
+
+# logs
+*.log
