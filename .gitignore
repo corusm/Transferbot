@@ -6,3 +6,5 @@ node_modules/
 
 # logs
 *.log
+
+transferbot/tokens\.json
