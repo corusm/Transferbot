@@ -1,2 +1,5 @@
 #ignore folder node_modules
 node_modules/
+
+#tokens file
+tokens.json
