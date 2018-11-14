@@ -43,7 +43,7 @@ Add your username to the System (so it gets your ID):
 * **/auth**
 
 Add your group to the System:
-* **/authgroup**
+* **/authgroup "nickname"**
 
 List Telegram users connected to the System:
 * **/listusers**
@@ -54,7 +54,7 @@ Send Message from Telegram to Discord:
 ## Discord Commands:
 Send Messages from Discord to Telegram:
 with the nickname you just chose
-* **!send "nickname" > "message"**
+* **!send "nickname or username" > "message"**
 
 List Telegram users connected to the System:
 * **!listusers**
