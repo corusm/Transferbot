@@ -10,22 +10,42 @@ var methods = {
       var jsonContent = JSON.parse(contents); // Parse to String
       return jsonContent[token]
   },
-  addUsers: function(newUsername, newID) {
-      var fileName = './users.json';
-      var file = require(fileName);
+  addUsers: function(newUsername, newID, num) {
+      var file1 = './users.json';
+      var file2 = './discorduser.json'
+      var fin;
+
+      if (num === 1) {
+        fin = file1;
+      }
+      if (num === 2) {
+        fin = file2;
+      }
+
+      var file = require(fin)
 
       file[newUsername] = newID; // Adds new User to users.json
-      fs.writeFile(fileName, JSON.stringify(file), function (err) { // rewrites users.json File
+      fs.writeFile(fin, JSON.stringify(file), function (err) { // rewrites users.json File
           if (err) return console.log(err);
-          logger.log("info", "Users updated: " + newUsername + " (" + newID + ")")
+          logger.log("info", "Users updated: " + newUsername)
       });
   },
-  getUsers: function(usernameOnList) { // searches for Users on users.json
-      var contents = fs.readFileSync("./users.json");
-      var jsonContent = JSON.parse(contents); // Parse to String
-      return jsonContent[usernameOnList]
+  getUsers: function(usernameOnList, num) { // searches for Users on users.json
+    var file1 = './users.json';
+    var file2 = './discorduser.json'
+    var fin;
+
+    if (num === 1) {
+      fin = file1;
+    }
+    if (num === 2) {
+      fin = file2;
+    }
+    var contents = fs.readFileSync(fin);
+    var jsonContent = JSON.parse(contents); // Parse to String
+    return jsonContent[usernameOnList]
   },
-  listUsers: function(ctx, service) {
+  listUsers: function(ctx, service) { // TODO: List users by File
     var contents = fs.readFileSync("./users.json");
     var jsonContent = JSON.parse(contents);
     var users = Object.entries(jsonContent);

@@ -36,18 +36,23 @@ client.on('message', msg => {
   let str = msg.content;
   const subText = str.split(" "); // Splits up the messages into the word devided by spaces
    if (subText[0] === '!send') { // Send Messages from Discord to Telegram
-     userNameID = methods.getUsers(subText[1]); // Read Users from Users.json (methods.getUsers() Method)
+     userNameID = methods.getUsers(subText[1], 1); // Read Users from Users.json (methods.getUsers() Method)
      const finalMessage = str.split("-");
      bot.telegram.sendMessage(userNameID, msg.author.username + ": " + finalMessage[1]); //Send Message to TelegramUser
      logger.log("info", "[DISCORD>>TELEGRAM] Message from " + msg.author.username + " to " + subText[1]);
   }
   if (msg.content === '!listusers') { // Send Messages from Discord to Telegram
     methods.listUsers(msg, 0);
-    logger.log("info", "Discord users listed (users.json) by " + msg.author);
+    logger.log("info", "Discord users listed (users.json) by " + msg.author.username);
   }
   if (msg.content === '!help') {
     msg.channel.send("Commands: \n [!]send {nickname} > {yourText} -- Send text to user from Telegram \n [!]listusers -- Lists all Telegram users registered to the bot");
-    logger.log("info", "Help request by " + msg.author);
+    logger.log("info", "Help request by " + msg.author.username);
+  }
+  if (msg.content === '!auth') {
+    methods.addUsers(msg.author.username, msg.author.id, 2)
+    msg.channel.send(msg.author.username + " has been registered!");
+    logger.log("info", msg.author.username + " has been registered!");
   }
 });
 
@@ -60,7 +65,7 @@ bot.help((ctx) => {
 // Syntax: /auth
 bot.command('/auth', (ctx) => {
     let userID = ctx.from["id"]; // get UserID
-    methods.addUsers(ctx.from["username"], userID); // logged in addUsers()
+    methods.addUsers(ctx.from["username"], userID, 1); // logged in addUsers()
     ctx.reply("User " + ctx.from["username"] + " has been added!");
 })
 
@@ -69,7 +74,7 @@ bot.command('/authgroup', (ctx) => {
     let userID = ctx.chat["id"]; // get UserID
     let input = ctx.message["text"];
     let subText = input.split(" ");
-    methods.addUsers(subText[1], userID); // logged in addUsers()
+    methods.addUsers(subText[1], userID, 1); // logged in addUsers()
     ctx.reply("The group " + ctx.chat["title"] + " has been added as " + subText[1] + "!");
     logger.log("info", "The group " + ctx.chat["title"] + " has been added as " + subText[1] + "!")
 })
@@ -81,6 +86,10 @@ bot.command('/send', (ctx) => {
     const subText = input.split(" ");
     const channel = client.channels.find('name', subText[1]);
     const finalMessage = input.split("-");
+    if (channel === null) {
+      client.users.get(methods.getUsers(subText[1], 2)).send(ctx.from["username"] + ": " +finalMessage[1]);
+      logger.log("info", "DM Message send to: " + subText[1]);
+    }
     channel.send(ctx.from["username"] + ": " + finalMessage[1]);
     logger.log("info", "[TELEGRAM>>DISCORD] Meesage from " + ctx.from["username"] + " to " + subText[1]);
 })
