@@ -38,8 +38,8 @@ client.on('message', msg => {
    if (subText[0] === '!send') { // Send Messages from Discord to Telegram
      userNameID = methods.getUsers(subText[1]); // Read Users from Users.json (methods.getUsers() Method)
      const finalMessage = str.split(">");
-     bot.telegram.sendMessage(userNameID, msg.author + ": " + finalMessage[1]); //Send Message to TelegramUser
-     logger.log("info", "[DISCORD>>TELEGRAM] Message from " + msg.author + " to " + subText[1]);
+     bot.telegram.sendMessage(userNameID, msg.author.username + ": " + finalMessage[1]); //Send Message to TelegramUser
+     logger.log("info", "[DISCORD>>TELEGRAM] Message from " + msg.author.username + " to " + subText[1]);
   }
   if (msg.content === '!listusers') { // Send Messages from Discord to Telegram
     methods.listUsers(msg, 0);
@@ -52,17 +52,16 @@ client.on('message', msg => {
 });
 
 bot.help((ctx) => {
-  ctx.reply("Commands: \n /auth {placeYourNickname} -- Authenticate your Telegram ID \n /send {channelName} > {message} -- Message to discord channel \n /listusers -- List authenticated users");
+  ctx.reply("Commands: \n /auth -- Authenticate your Telegram ID \n /send {channelName} > {message} -- Message to discord channel \n /listusers -- List authenticated users");
   logger.log("info", "Help request by " + ctx.from["username"]);
 });
 
 // User verifies himself and his ID will be added to users.json
-// Syntax: /auth nickname
+// Syntax: /auth
 bot.command('/auth', (ctx) => {
-    let input = ctx.message["text"];
-    const subText = input.split(" ");
     let userID = ctx.from["id"]; // get UserID
-    methods.addUsers(subText[1], userID); // logged in addUsers()
+    methods.addUsers(ctx.from["username"], userID); // logged in addUsers()
+    ctx.reply("User " + ctx.from["username"] + " has been added!");
 })
 
 // Send messages from Telegram to Discord
