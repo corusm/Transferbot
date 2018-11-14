@@ -40,7 +40,7 @@ All the logs that you see in the shell also get logged in the **info.log** file.
 
 ## Telegram Commands:
 Add your username to the System (so it gets your ID):
-* **/auth "nickname"**
+* **/auth**
 
 List Telegram users connected to the System:
 * **/listusers**
