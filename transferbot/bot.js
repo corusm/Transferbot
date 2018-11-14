@@ -52,7 +52,7 @@ client.on('message', msg => {
 });
 
 bot.help((ctx) => {
-  ctx.reply("Commands: \n /auth -- Authenticate your Telegram ID \n /send {channelName} > {message} -- Message to discord channel \n /listusers -- List authenticated users");
+  ctx.reply("Commands: \n /auth -- Authenticate your Telegram ID \n /authgroup {nickname} \n /send {channelName} > {message} -- Message to discord channel \n /listusers -- List authenticated users");
   logger.log("info", "Help request by " + ctx.from["username"]);
 });
 
@@ -62,6 +62,16 @@ bot.command('/auth', (ctx) => {
     let userID = ctx.from["id"]; // get UserID
     methods.addUsers(ctx.from["username"], userID); // logged in addUsers()
     ctx.reply("User " + ctx.from["username"] + " has been added!");
+})
+
+// Syntax: /authgroup {groupname}
+bot.command('/authgroup', (ctx) => {
+    let userID = ctx.chat["id"]; // get UserID
+    let input = ctx.message["text"];
+    let subText = input.split(" ");
+    methods.addUsers(subText[1], userID); // logged in addUsers()
+    ctx.reply("The group " + ctx.chat["title"] + " has been added as " + subText[1] + "!");
+    logger.log("info", "The group " + ctx.chat["title"] + " has been added as " + subText[1] + "!")
 })
 
 // Send messages from Telegram to Discord
