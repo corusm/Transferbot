@@ -49,12 +49,12 @@ List Telegram users connected to the System:
 * **/listusers**
 
 Send Message from Telegram to Discord:
-* **/send "channelName" > "message"**
+* **/send "channelName" - "message"**
 
 ## Discord Commands:
 Send Messages from Discord to Telegram:
 with the nickname you just chose
-* **!send "nickname or username" > "message"**
+* **!send "nickname or username" - "message"**
 
 List Telegram users connected to the System:
 * **!listusers**
