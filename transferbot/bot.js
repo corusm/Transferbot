@@ -37,7 +37,7 @@ client.on('message', msg => {
   const subText = str.split(" "); // Splits up the messages into the word devided by spaces
    if (subText[0] === '!send') { // Send Messages from Discord to Telegram
      userNameID = methods.getUsers(subText[1]); // Read Users from Users.json (methods.getUsers() Method)
-     const finalMessage = str.split(">");
+     const finalMessage = str.split("-");
      bot.telegram.sendMessage(userNameID, msg.author.username + ": " + finalMessage[1]); //Send Message to TelegramUser
      logger.log("info", "[DISCORD>>TELEGRAM] Message from " + msg.author.username + " to " + subText[1]);
   }
@@ -80,7 +80,7 @@ bot.command('/send', (ctx) => {
     let input = ctx.message["text"];
     const subText = input.split(" ");
     const channel = client.channels.find('name', subText[1]);
-    const finalMessage = input.split(">");
+    const finalMessage = input.split("-");
     channel.send(ctx.from["username"] + ": " + finalMessage[1]);
     logger.log("info", "[TELEGRAM>>DISCORD] Meesage from " + ctx.from["username"] + " to " + subText[1]);
 })
