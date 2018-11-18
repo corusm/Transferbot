@@ -1,6 +1,15 @@
 // Niklas Leinz
 //--------------
 
+// Restful API (Uncomment this area to have a Restful API)
+/*
+const http = require('http');
+const app = require('./app');
+const port = process.env.PORT || 3000; // change 3000 to Costum port
+const server = http.createServer(app);
+server.listen(port);
+*/
+
 // Init winston logger (logger.js)
 var penis = require("./logger.js");
 var logger = penis.logger;
@@ -10,6 +19,8 @@ var methods = require("./outsource.js");
 // GETTING THE BOT RUNNING
 //------------------------
 // Init Telegram Bot
+
+
 const Telegraf = require('telegraf');
 const bot = new Telegraf(methods.getToken('telegram'));
 bot.startPolling(); //executes telegram bot
