@@ -16,6 +16,10 @@ then clone the git repos to your Server
 git clone https://github.com/corusm/Transferbot.git
 ```
 
+## Create Bot
+Here there are two urls of incstructions for creating a Discord and a Telegram Bot
+1. [Create Discord Bot](https://discordpy.readthedocs.io/en/rewrite/discord.html)
+2. [Create Telegram Bot](https://www.sohamkamani.com/blog/2016/09/21/making-a-telegram-bot/)
 
 ## Add Tokens
 Add your discord and telegram bot token to the **tokens.json** file
@@ -27,7 +31,7 @@ Add your discord and telegram bot token to the **tokens.json** file
 ```
 
 ## Run the bot
-Navigate to the directory where you have installed the bot (where the **node_modules** folder is located) and run these commands:
+Navigate to the directory where you have installed the bot (where the **bot.js** file is located) and run these commands:
 
 1. Start Bot: `npm start`
 2. Stop Bot: `npm stop`
@@ -61,3 +65,6 @@ with the nickname you just chose
 
 List Telegram users connected to the System:
 * **!listusers**
+
+# Help me improving this bot! 
+If there is any bug to fix or you have a feature request do not hesitate to conctact me!
