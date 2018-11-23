@@ -16,6 +16,11 @@ then clone the git repos to your Server
 git clone https://github.com/corusm/Transferbot.git
 ```
 
+## Install dependencies
+```
+npm install
+```
+
 ## Create Bot
 Here there are two urls of incstructions for creating a Discord and a Telegram Bot
 1. [Create Discord Bot](https://discordpy.readthedocs.io/en/rewrite/discord.html)
