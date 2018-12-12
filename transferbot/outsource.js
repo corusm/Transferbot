@@ -1,18 +1,18 @@
 // Init FileSystem (Node.js)
 var fs = require("fs");
 // Init winston logger (logger.js)
-var winston = require("./logger.js");
+var winston = require(`${__dirname}/logger.js`);
 var logger = winston.logger;
 
 var methods = {
   getToken: function(token) { // searches for token on tokens.json
-      var contents = fs.readFileSync("./tokens.json");
+      var contents = fs.readFileSync(`${__dirname}/tokens.json`);
       var jsonContent = JSON.parse(contents); // Parse to String
       return jsonContent[token]
   },
   addUsers: function(newUsername, newID, num) {
-      var file1 = './users.json';
-      var file2 = './discorduser.json'
+      var file1 = `${__dirname}/users.json`;
+      var file2 = `${__dirname}/discorduser.json`;
       var fin;
 
       if (num === 1) {
@@ -31,8 +31,8 @@ var methods = {
       });
   },
   getUsers: function(usernameOnList, num) { // searches for Users on users.json
-    var file1 = './users.json';
-    var file2 = './discorduser.json'
+    var file1 = `${__dirname}/users.json`;
+    var file2 = `${__dirname}/discorduser.json`;
     var fin;
 
     if (num === 1) {
@@ -46,7 +46,7 @@ var methods = {
     return jsonContent[usernameOnList]
   },
   listUsers: function(ctx, service) { // TODO: List users by File
-    var contents = fs.readFileSync("./users.json");
+    var contents = fs.readFileSync(`${__dirname}/users.json`);
     var jsonContent = JSON.parse(contents);
     var users = Object.entries(jsonContent);
     if (users.length === 0) {

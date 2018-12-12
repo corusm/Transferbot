@@ -11,10 +11,10 @@ server.listen(port);
 */
 
 // Init winston logger (logger.js)
-var penis = require("./logger.js");
+var penis = require(`${__dirname}/logger.js`);
 var logger = penis.logger;
 
-var methods = require("./outsource.js");
+var methods = require(`${__dirname}/outsource.js`);
 //------------------------
 // GETTING THE BOT RUNNING
 //------------------------
