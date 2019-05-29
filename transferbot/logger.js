@@ -11,7 +11,7 @@ let logger = winston.createLogger({
     ),
     transports: [
       new winston.transports.Console(),
-      new winston.transports.File({filename: `${__dirname}/info_${date}.log`})
+      new winston.transports.File({filename: `${__dirname}/logs/info_${date}.log`})
     ]
 });
 
