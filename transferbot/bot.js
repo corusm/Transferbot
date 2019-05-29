@@ -34,7 +34,7 @@ client.login(methods.getToken("discord")); //login into discord bot (Token)
 //-------------------------------------
 // Bot started
 console.log("-------------------------");
-logger.log("info", "BOT RUNNING");
+logger.log("info", "BOT STATUS: running");
 console.log("-------------------------");
 
 // Sourcecode

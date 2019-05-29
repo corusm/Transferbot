@@ -1,4 +1,5 @@
 // Winston
+let date = Date.now();
 let winston = require('winston')
 let logger = winston.createLogger({
     level: "info",
@@ -10,7 +11,7 @@ let logger = winston.createLogger({
     ),
     transports: [
       new winston.transports.Console(),
-      new winston.transports.File({filename: 'info.log'})
+      new winston.transports.File({filename: `${__dirname}/info_${date}.log`})
     ]
 });
 
